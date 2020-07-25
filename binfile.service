@@ -1,0 +1,10 @@
+[Unit]
+Description=Binfile Server
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/binfile
+User=nobody
+
+[Install]
+WantedBy=multi-user.target

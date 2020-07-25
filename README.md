@@ -36,11 +36,17 @@ US      | [mrow.org](https://mrow.org) | AS54858 | HTTP/HTTPS     | [1 MB](http:
 
 ## Sample simple server instead of using actual files
 
+This simple server will return a "file" based on the size requested:
+
+* `/#size#` will return file of that size e.g. `/100mb` made up entirely of 0xAA
+* `/rand/#size#` will return a pseudo random file (a repeated 9000 byte random chunk) of that size e.g. `/rand/100mb`
+
 ### Sample run of the simple server
 
-Run the server like so:
+Run the server like so (with go installed):
 
 ```zsh
+go get github.com/n6udp/binfile
 go run github.com/n6udp/binfile
 ```
 
@@ -75,4 +81,19 @@ binfile -httpbindaddr "0.0.0.0:80" -httpsbindaddr "0.0.0.0:443" -httpshostname "
 
 ### Docker
 
-There is a simple Dockerfile that just exposes the http port (it assumes you will provide https on your own if you desire it)
+There is a *very* simple Dockerfile that just exposes the http port (it assumes you will provide https on your own if you desire it)
+
+```zsh
+docker run binfiles/binfile
+```
+
+### Sample SystemD unit file
+
+Place `binfile` itself at `/usr/local/bin/binfile`
+
+Place `binfile.service` at `/etc/systemd/system/binfile.service` and then run:
+
+```zsh
+systemctl enable binfile
+systemctl start binfile
+```
