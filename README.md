@@ -67,6 +67,19 @@ lburton@newquark ~ % time curl -s localhost:8080/1gb | wc -c
 1073741824
 curl -s localhost:8080/1gb  0.14s user 0.73s system 83% cpu 1.045 total
 wc -c  0.05s user 0.73s system 74% cpu 1.045 total
+lburton@newquark ~ % curl -s localhost:8080/rand/100b  | hexdump
+0000000 b0a6 bfe7 aa69 e109 1981 7e6f 2742 e0a0
+0000010 0d68 f8df 5e42 87b2 6402 14f8 9cf1 1514
+0000020 c857 3d7b b5c8 3c58 8c46 e3de f364 b191
+0000030 7a03 b2a5 84e9 e7d2 9943 01b0 19e7 74f4
+0000040 a971 1046 bb2b 0099 5bce aeea 8b56 b428
+0000050 39dc 69b6 f79f 7e73 dc14 8266 5486 d2d1
+0000060 630c 6e4a
+0000064
+lburton@newquark ~ % curl -s localhost:8080/100b  | hexdump
+0000000 aaaa aaaa aaaa aaaa aaaa aaaa aaaa aaaa
+*
+0000064
 ```
 
 ### TLS support
